@@ -1,115 +1,98 @@
+📘 README — Como transformar a base de conhecimento em uma POC de agente GenAI (RAG)
 
-# ðŸ“˜ README â€” Como transformar a base de conhecimento em uma POC de agente GenAI (RAG)
+Este guia é opcional e serve para quem deseja transformar o arquivo
+base_conhecimento_ifood_genai.csv em uma prova de conceito (POC) de um agente interno usado para decisões de reembolsos e cancelamentos, semelhante ao que times internos podem desenvolver no iFood.
 
-Este guia Ã© **opcional** e serve para quem deseja transformar o arquivo  
-`base_conhecimento_ifood_genai.csv` em uma **prova de conceito (POC)** de um agente interno utilizado para decisÃµes de **reembolsos e cancelamentos**, similar ao que times internos podem desenvolver no iFood.
+A ideia não é construir um sistema completo, mas criar algo demonstrável para portfólio, currículo ou entrevista técnica.
 
-A ideia nÃ£o Ã© construir um sistema completo, mas criar algo demonstrÃ¡vel para **portfÃ³lio, currÃ­culo ou entrevista tÃ©cnica**.
-
----
-
-## ðŸŽ¯ Objetivo da POC
+🎯 Objetivo da POC
 
 Criar um agente de IA capaz de:
 
-1) **Consultar informaÃ§Ãµes oficiais** (base de conhecimento)  
-2) **Responder perguntas operacionais** de forma consistente  
-3) **Evitar respostas inventadas** (alucinaÃ§Ã£o)  
-4) Sugerir **fallback seguro** quando nÃ£o hÃ¡ confianÃ§a
+Consultar informações oficiais (base de conhecimento)
 
----
+Responder perguntas operacionais de forma consistente
 
-## ðŸ› ï¸ O que vocÃª vai precisar
+Evitar respostas inventadas (alucinação)
 
-VocÃª pode escolher entre duas rotas:
+Sugerir fallback seguro quando não houver confiança suficiente
 
-| Tipo de POC | Ferramentas sugeridas |
-|-------------|-----------------------|
-| **Sem cÃ³digo ** | Flowise, Dify, ChatGPT Assistants, N8n, Zapier AI Actions |
-| **Com cÃ³digo ** | Python + alguma lib de RAG (LangChain, LlamaIndex etc.) |
+🧰 O que você vai precisar
 
-Se seu foco Ã© **portfÃ³lio rÃ¡pido**, comece com **no-code**.
+Você pode escolher entre duas rotas:
 
----
+Tipo de POC	Ferramentas sugeridas
+Sem código	Flowise, Dify, ChatGPT Assistants, N8n, Zapier AI Actions
+Com código	Python + alguma biblioteca de RAG (LangChain, LlamaIndex etc.)
 
-## ðŸ“¥ 1. Importe a base de conhecimento
+Se seu foco é portfólio rápido, comece com no-code.
 
-FaÃ§a upload do arquivo CSV na ferramenta escolhida, dentro da seÃ§Ã£o onde ela aceita:
+📥 1. Importe a base de conhecimento
 
-- **Knowledge Base**
-- **Documents**
-- **Files / Upload**
-- **Sources / Data Sources**
+Faça upload do arquivo CSV na ferramenta escolhida, dentro da seção onde ela aceita:
 
-Verifique se o conteÃºdo foi indexado (algumas plataformas mostram isso).
+Knowledge Base
 
----
+Documents
 
-## ðŸ§  2. Configure o propÃ³sito do agente
+Files / Upload
 
-Use uma descriÃ§Ã£o parecida com esta:
+Sources / Data Sources
 
-> VocÃª Ã© um agente interno que auxilia colaboradores a decidirem sobre reembolsos e cancelamentos.  
-> Sempre consulte a base de conhecimento antes de responder.  
-> Se nÃ£o houver confianÃ§a suficiente, sugira validaÃ§Ã£o manual ou abertura de ticket interno, em vez de gerar uma resposta incerta.
+Verifique se o conteúdo foi indexado (algumas plataformas mostram isso).
 
----
+🧠 2. Configure o propósito do agente
 
-## ðŸ”Ž 3. Ative o uso da base com busca semÃ¢ntica (RAG)
+Use uma descrição como esta:
 
-Procure por opÃ§Ãµes como:
+Você é um agente interno que auxilia colaboradores a decidirem sobre reembolsos e cancelamentos.
+Sempre consulte a base de conhecimento antes de responder.
+Se não houver confiança suficiente, sugira validação manual ou abertura de ticket interno, em vez de responder com incerteza.
 
-- â€œUse knowledge in answersâ€
-- â€œGround responses on documentsâ€
-- â€œRetrieval / Semantic Search / RAGâ€
-- â€œSearch documents before answeringâ€
+🔍 3. Ative o uso da base com busca semântica (RAG)
 
-Ative e deixe as configuraÃ§Ãµes padrÃ£o.
+Procure por opções como:
 
----
+“Use knowledge in answers”
 
-## âš  4. Configure um comportamento de fallback
+“Ground responses on documents”
 
-SugestÃ£o de mensagem padrÃ£o:
+“Retrieval / Semantic Search / RAG”
 
-> NÃ£o encontrei informaÃ§Ãµes suficientes na base para responder com seguranÃ§a. Sugiro abrir um ticket interno ou consultar a polÃ­tica oficial.
+“Search documents before answering”
 
----
+Ative e mantenha as configurações padrão.
 
-## ðŸ§ª 5. Teste com cenÃ¡rios reais
+⚠️ 4. Configure um comportamento de fallback
+
+Sugestão de frase padrão:
+
+Não encontrei informações suficientes na base para responder com segurança. Sugiro abrir um ticket interno ou consultar a política oficial.
+
+🧪 5. Teste com cenários reais
 
 Use perguntas como:
 
-| Pergunta recomendada | O que observar |
-|---|---|
-| â€œO cliente quer reembolso, mas o pedido jÃ¡ saiu para entrega. Ainda Ã© permitido?â€ | O agente deve identificar exceÃ§Ãµes e diferenciar motivos (erro do app/restaurante/entregador vs. desistÃªncia do cliente) |
-| â€œO restaurante cancelou por falta de ingrediente. O reembolso Ã© automÃ¡tico?â€ | Deve encontrar polÃ­tica de reembolso automÃ¡tico |
-| â€œO cliente foi cobrado apÃ³s o cancelamento. O que fazer?â€ | Deve mencionar validaÃ§Ã£o do estorno e possivelmente ticket |
+Pergunta recomendada	O que observar
+“O cliente quer reembolso, mas o pedido já saiu para entrega. Ainda é permitido?”	O agente deve diferenciar motivos (erro do app/restaurante/entregador vs. desistência do cliente)
+“O restaurante cancelou por falta de ingrediente. O reembolso é automático?”	Deve localizar políticas de reembolso automático
+“O cliente foi cobrado após o cancelamento. O que fazer?”	Deve mencionar validação do estorno e possível ticket
+📝 6. Como apresentar essa POC no portfólio (modelo pronto)
 
----
+Desenvolvi uma POC de agente interno para decisões de reembolso/cancelamento utilizando RAG com uma base de conhecimento simulada.
+Configurei fallback para baixa confiança e testei cenários críticos (pedido já saiu para entrega, cancelamento por falha do restaurante, cobrança após cancelamento).
+A POC foi criada com foco em consistência operacional e redução de respostas incorretas.
 
-## ðŸ“ 6. Como apresentar essa POC no seu portfÃ³lio (modelo de texto)
+🚀 7. Ideias de evolução (opcional)
 
-> Desenvolvi uma POC de agente interno para decisÃµes de reembolso/cancelamento com RAG, usando uma base de conhecimento simulada.  
-> Configurei fallback para baixa confianÃ§a e testei cenÃ¡rios crÃ­ticos (pedido jÃ¡ saiu para entrega, cancelamento por falha do restaurante, cobranÃ§a apÃ³s cancelamento).  
-> A POC foi criada com foco em consistÃªncia operacional e reduÃ§Ã£o de respostas incorretas.
+logs de confiança da resposta
 
----
+categorias de decisão (financeiro / restaurante / entrega / fraude)
 
-## ðŸŽ¬ 7. Ideias de evoluÃ§Ã£o (opcional)
+integração com APIs fictícias de pedido/estorno
 
-- logs de confianÃ§a da resposta
-- categorias de decisÃ£o (financeiro / restaurante / entrega / fraude)
-- integraÃ§Ã£o com APIs fictÃ­cias de pedido/estorno
-- classificaÃ§Ã£o automÃ¡tica do tipo de caso
+classificação automática do tipo de caso
 
----
+📂 Arquivo utilizado
 
-## ðŸ“Ž Arquivo utilizado
-
-`base_conhecimento_ifood_genai.csv`  
-*(SimulaÃ§Ã£o para fins educacionais, nÃ£o representa polÃ­ticas oficiais do iFood.)*
-
----
-
-## ðŸ§© Pronto! VocÃª tem uma POC vÃ¡lida para apresentar em entrevista.
+base_conhecimento_ifood_genai.csv
